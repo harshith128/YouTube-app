@@ -1,0 +1,357 @@
+<!DOCTYPE html>
+<html lang="en">
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>YouTube App</title>
+    <link rel="stylesheet" href="https://fonts.googleapis.com/icon?family=Material+Icons">
+    <style>
+        * {
+            padding: 0;
+            margin: 0;
+        }
+        #video {
+            height: 32px;
+            width: 500px;
+            padding-right: 20px;
+        }
+        #video::placeholder, #video[type=text]{
+            padding-left: 8px;
+        }
+        .search-bar{
+            margin: 8px 160px;
+            display: flex;
+            flex-grow: 1;
+        }
+        .search-bar > span {
+            margin: 5px 15px;
+        }
+        #btn > span {
+            width: 60px;
+            background-color: white;
+        }
+        .top{
+            display: flex;
+            height: 50px;
+            border-bottom: 1px solid gray;
+        }
+        .top button {
+            height: 36px;
+        }
+        .other{
+            display: flex;
+        }
+        .other > span{
+            margin: 10px 20px;
+        }
+        #menu{
+            border: none;
+            background-color: white;
+            margin: 8px 15px;
+        }
+        .icon{
+            height: 100%;
+        }
+        img{
+            height: 50%;
+            margin: 12%;
+        }
+        .side {
+            width: 16%;
+        }
+        .side > div:not(.line) {
+            margin: 20px 30px;
+            text-align: left;
+            display: flex;
+        }
+        .side > div > p{
+            margin: 5px 20px;
+        }
+        .line {
+            width: 97%;
+            border-top: 1px solid gray;
+        }
+        #addVideo{
+            width: 96%;
+            margin: auto;
+            margin-top: 20px;
+            display: grid;
+            grid-template-columns: 23% 23% 23% 23%;
+            gap: 2.5%;
+            padding-bottom: 150px;
+        }
+        iframe {
+            width: 100%;
+        }
+        .main-cont {
+            display: flex;
+        }
+        .video-cont{
+            flex-grow: 1;
+            background-color: rgb(235, 231, 231);
+            margin: 0 auto;
+        }
+        .hiThere > p:not(.Videotitle) {
+            margin: auto 10px;
+            line-height: 25px;
+            color: gray;
+        }
+        .Videotitle, .channeltitle {
+            margin: auto 10px;
+            display: -webkit-box;
+            -webkit-line-clamp: 1;
+            -webkit-box-orient: vertical;  
+            overflow: hidden;
+            color: black;
+        }
+        .side-small {
+            display: none;
+            padding: 12px;
+        }
+        .side-small > div{
+            display: flex;
+            flex-direction: column;
+            text-align: center;
+            margin-top: 30px;
+        }
+        .small{
+            font-size: 12px;
+            text-align: center;
+        }
+        .side, .side-small, #menu{
+            cursor: pointer;
+        }
+    </style>
+</head>
+<body>
+    <div class="top">
+        <button id="menu"><span class="material-icons">menu</span></button>
+        <div class="icon"><img src="https://blog.logomyway.com/wp-content/uploads/2020/09/youtube-logo2-1.jpg"/></div>
+        <form class="search-bar">
+            <div>
+                <input type="text" id="video" placeholder="Search"/>
+            </div>
+            <button id="btn"><span class="material-icons">search</span></button>
+            <span class="material-icons">mic</span>
+        </form>
+        <div class="other">
+            <span class="material-icons">video_call</span>
+            <span class="material-icons">apps</span>
+            <span class="material-icons">notifications</span>
+            <span class="material-icons">account_circle</span>
+        </div>
+    </div>
+    <div class="main-cont">
+        <div class="side-small">
+            <div class="home-small">
+                <span class="material-icons">home</span>
+                <span class="small">Home</span>
+            </div>
+            <div>
+                <span class="material-icons">explore</span>
+                <span class="small">Explore</span>
+            </div>
+            <div>
+                <span class="material-icons">subscriptions</span>
+                <span class="small">Subscription</span>
+            </div>
+            <div>
+                <span class="material-icons">video_library</span>
+                <span class="small">Library</span>
+            </div>
+        </div>
+        <div class="side">
+            <div class="home">
+                <span class="material-icons">home</span>
+                <p>Home</p>
+            </div>
+            <div>
+                <span class="material-icons">explore</span>
+                <p>Explore</p>
+            </div>
+            <div>
+                <span class="material-icons">subscriptions</span>
+                <p>Subscription</p>
+            </div>
+            <div class="line"></div>
+            <div>
+                <span class="material-icons">video_library</span>
+                <p>Library</p>
+            </div>
+            <div>
+                <span class="material-icons">history</span>
+                <p>History</p>
+            </div>
+            <div>
+                <span class="material-icons">slideshow</span>
+                <p>Your Videos</p>
+            </div>
+            <div>
+                <span class="material-icons">watch_later</span>
+                <p>Watch later</p>
+            </div>
+            <div>
+                <span class="material-icons">thumb_up</span>
+                <p>Liked Video</p>
+            </div>
+            <div class="line"></div>
+        </div>
+        <div class="video-cont">
+            <div id="addVideo">
+                <!-- <iframe width="560" height="315" src="https://www.youtube.com/embed/mPTm08EuxLE" title="YouTube video player" frameborder="0" allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture" allowfullscreen></iframe> -->
+                <!-- above is taken from youtube share embed  -->
+            </div>
+        </div>
+    </div>
+</body>
+</html>
+<script>
+
+    document.querySelector(".home").addEventListener("click", displayPopularVideo);
+    document.querySelector(".home-small").addEventListener("click", displayPopularVideo);
+
+    let changeSideBar = ()=>{
+        let smallSideBar = document.querySelector(".side-small");
+        let sideBar = document.querySelector(".side");
+
+        if(smallSideBar.style.display == "none"){
+            sideBar.style.display = "none"
+            smallSideBar.style.display = "block";
+        } else {
+            smallSideBar.style.display = "none";
+            sideBar.style.display = "block"
+        }
+    }
+
+    document.getElementById("menu").addEventListener("click", changeSideBar);
+
+    async function displayVideo(event){
+        event.preventDefault()
+        let search = document.getElementById("video").value;
+        // console.log(search)
+        if(search == ""){
+            return null;
+        }//type =video added to get only videos
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?q=${search}&type=video&locale=india&maxResults=20&key=AIzaSyDWx8iNPmDuEyZfZq7sclSuqgcACWS9dns&part=snippet`);
+
+        let data = await res.json();
+        // console.log(data)
+
+        document.getElementById("addVideo").innerHTML = null;
+
+        // for(video of data.items){
+        //     console.log(video.id)
+        // } //use es6  and id is an object videoid is what we need //nested destructuring
+        for({id:{videoId},} of data.items){
+            
+            let video_frame = document.createElement("iframe");
+
+            let detail = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?id=${videoId}&part=statistics&key=AIzaSyDWx8iNPmDuEyZfZq7sclSuqgcACWS9dns&part=snippet`);
+            
+            let videoData = await detail.json();
+            let snippet = videoData.items[0].snippet;
+            let statistics = videoData.items[0].statistics;
+            // console.log(snippet);//title  channelTitle
+            // console.log(statistics);//likeCount  dislikeCount viewCount
+
+            let p_title = document.createElement("p");
+            p_title.innerText = snippet.title;
+            p_title.setAttribute("class", "Videotitle");
+
+            let p_channelTitle = document.createElement("p");
+            p_channelTitle.innerText = `Channel  ${snippet.channelTitle}`;
+
+            let p_likeCount = document.createElement("p");
+            p_likeCount.innerText = `likes    ${statistics.likeCount}`
+
+            let p_dislikeCount = document.createElement("p");
+            p_dislikeCount.innerText = `dislikes ${statistics.dislikeCount}`
+
+            let p_viewCount = document.createElement("p");
+            p_viewCount.innerText = `views    ${statistics.viewCount}`
+
+
+            video_frame.src=`https://www.youtube.com/embed/${videoId}`;
+            //above src is taken from ifram of top src just id is made dynamic
+
+            //to allow video to play fullscreen.
+            video_frame.allow = `fullscreen`;
+
+            let div = document.getElementById("addVideo");
+            // div.innerHTML = null;
+
+            let divBlock = document.createElement("div");
+            divBlock.setAttribute("class", "hiThere");
+            divBlock.append(video_frame, p_title, p_channelTitle, p_viewCount, p_likeCount, p_dislikeCount);
+
+            div.append(divBlock);
+
+
+        }
+    }
+
+    document.getElementById("btn").addEventListener("click", displayVideo);
+
+    async function displayPopularVideo(){
+        let res = await fetch(`https://youtube.googleapis.com/youtube/v3/search?q=trendinginIndia&type=video&locale=india&maxResults=20&key=AIzaSyDWx8iNPmDuEyZfZq7sclSuqgcACWS9dns&part=snippet`);
+
+
+        let data = await res.json();
+        // console.log(data)
+        document.getElementById("addVideo").innerHTML = null;
+
+        // for(video of data.items){
+        //     console.log(video.id)
+        // } //use es6  and id is an object videoid is what we need //nested destructuring
+        for({id:{videoId},} of data.items){
+
+            // console.log(videoId)
+            
+            let video_frame = document.createElement("iframe");
+
+            let detail = await fetch(`https://youtube.googleapis.com/youtube/v3/videos?id=${videoId}&part=statistics&key=AIzaSyDWx8iNPmDuEyZfZq7sclSuqgcACWS9dns&part=snippet`);
+            
+            let videoData = await detail.json();
+            let snippet = videoData.items[0].snippet;
+            let statistics = videoData.items[0].statistics;
+            // console.log(snippet);//title  channelTitle
+            // console.log(statistics);//likeCount  dislikeCount viewCount
+
+            let p_title = document.createElement("p");
+            p_title.innerText = snippet.title;
+            p_title.setAttribute("class", "Videotitle");
+
+            let p_channelTitle = document.createElement("p");
+            p_channelTitle.innerText = `Channel  ${snippet.channelTitle}`;
+            p_channelTitle.setAttribute("class", "channeltitle");
+
+            let p_likeCount = document.createElement("p");
+            p_likeCount.innerText = `likes    ${statistics.likeCount}`
+
+            let p_dislikeCount = document.createElement("p");
+            p_dislikeCount.innerText = `dislikes ${statistics.dislikeCount}`
+
+            let p_viewCount = document.createElement("p");
+            p_viewCount.innerText = `views    ${statistics.viewCount}`
+
+
+            video_frame.src=`https://www.youtube.com/embed/${videoId}`;
+            //above src is taken from ifram of top src just id is made dynamic
+
+            //to allow video to play fullscreen.
+            video_frame.allow = `fullscreen`;
+
+            let div = document.getElementById("addVideo");
+            // div.innerHTML = null;
+
+            let divBlock = document.createElement("div");
+            divBlock.setAttribute("class", "hiThere");
+            divBlock.append(video_frame, p_title, p_channelTitle, p_viewCount, p_likeCount, p_dislikeCount);
+
+            div.append(divBlock);
+        }
+    }
+
+    displayPopularVideo();
+</script>
